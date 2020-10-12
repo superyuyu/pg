@@ -5,7 +5,7 @@ import sys
 import logging
 import logging.handlers
 import time
-import conf
+import config
 import Base
 class Log(Base.BaseClass):
 
@@ -53,11 +53,6 @@ class Log(Base.BaseClass):
 
 if __name__ == "__main__":
     log = Log()
-    print id(log)
-    log.info("aaaaaaaaaaaaaa")
-    log1 = Log()
-    print id(log1)
-    log1.info("bbbbbbbbbbbbbbb")
-    log2 = Log()
-    print id(log2)
-    log2.info("ccccccccccccc")
+    print(id(log))
+    log.info("asdad")
+
