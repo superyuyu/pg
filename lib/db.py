@@ -62,7 +62,6 @@ if __name__ == "__main__":
 
     data = db.select("select * from shopping_trade_info limit 10")
     id = data[0]["trans_id"]
-    print id
     exit(1)
 
     conf = conf.Config("db.conf")
@@ -74,6 +73,4 @@ if __name__ == "__main__":
     db = Mysqldb(host,port,user,pwd,dbName)
     data = db.select("select * from shopping_trade_info limit 10")
     id = data[0]["trans_id"]
-    print id
     data = db.select("select *from shopping_trade_info where trans_id='%s'" % id)
-    print data
