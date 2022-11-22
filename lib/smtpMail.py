@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-import log
+from . import log
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header

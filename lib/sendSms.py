@@ -4,9 +4,9 @@ import os
 import sys 
 import json
 import urllib
-import log
-import Base 
-import http 
+from . import log
+from . import Base
+from . import http
 log = log.Log()
 def sendSms(msisdn,msg):
     if not msisdn or not msg:

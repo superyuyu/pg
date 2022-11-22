@@ -6,7 +6,7 @@ import traceback
 import socket
 
 sys.path.append("../lib/")
-import config
+from . import config
 
 DEBUG = 1
 TEST = 2

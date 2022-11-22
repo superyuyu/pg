@@ -5,8 +5,8 @@ import sys
 import logging
 import logging.handlers
 import time
-import config
-import Base
+from . import config
+from . import Base
 class Log(Base.BaseClass):
 
     __instance=None

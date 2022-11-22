@@ -5,11 +5,10 @@ import sys
 import logging
 import logging.handlers
 import time
-import conf
 import requests
 import json
-import log
 import traceback
+from . import log
 log = log.Log()
 
 class Http(object):

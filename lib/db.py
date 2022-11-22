@@ -3,12 +3,12 @@
 import os,sys
 import MySQLdb as mdb
 import MySQLdb.cursors
-import conf
-import Base
+from . import config
+from . import Base
 
 class Mysqldb(Base.BaseClass):
     def __init__(self,prefix):
-        #cf = conf.Config("db.conf")
+        #cf = config.Config("db.conf")
         Base.BaseClass.__init__(self)
         cf = self.envConf
         host,port,user,pwd,dbName = self.initDbConf(prefix,cf)
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     id = data[0]["trans_id"]
     exit(1)
 
-    conf = conf.Config("db.conf")
+    conf = config.Config("db.conf")
     host = conf.get("db_test.db_host")
     port = conf.get("db_test.db_port")
     user = conf.get("db_test.db_user")
