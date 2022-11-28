@@ -7,7 +7,7 @@ class Config:
     def __init__(self,fileName=None):
         self.conf = configparser.ConfigParser()
         currentDir = os.path.dirname(os.path.abspath(__file__))
-        confFile = os.path.join(currentDir+'/../config/',fileName)
+        confFile = os.path.join(currentDir+'/../../config/',fileName)
         self.conf.read(confFile)
 
     #获取配置 结构为:section.key
