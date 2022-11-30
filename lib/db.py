@@ -1,8 +1,8 @@
 #!/usr/bin/python          
 # -*- coding: utf-8 -*- 
 import os,sys
-import MySQLdb as mdb
-import MySQLdb.cursors
+import pymysql as mdb
+import pymysql.cursors
 from . import config
 from . import Base
 
@@ -13,13 +13,18 @@ class Mysqldb(Base.BaseClass):
         cf = self.envConf
         host,port,user,pwd,dbName = self.initDbConf(prefix,cf)
         if not host or not port or not user or not pwd or not dbName:
-            return False 
-        self.conn = mdb.connect(host,user,pwd,dbName,int(port),charset='utf8',cursorclass = MySQLdb.cursors.DictCursor)
+            raise Exception("数据库信息有为空")
+        self.cur = None
+        self.conn = None
+        self.conn = mdb.connect(host=host,user=user,password=pwd,database=dbName,port=int(port),charset='utf8',cursorclass = mdb.cursors.DictCursor)
         self.cur = self.conn.cursor()
+        return None
 
     def __del__(self):
-        self.cur.close()
-        self.conn.close()
+        if self.cur:
+            self.cur.close()
+        if self.conn:
+            self.conn.close()
 
     def select(self,sql):
         if not sql:
