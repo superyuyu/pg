@@ -29,7 +29,7 @@ class Log(Base.BaseClass):
         self.logger.setLevel(logging.INFO)
         self.fh = logging.FileHandler(self.path + self.filename)
         self.fh.setLevel(logging.DEBUG)
-        self.formatter = logging.Formatter('%(asctime)s_%(name)s_func:%(funcName)s_line:%(lineno)s %(levelname)s: %(message)s')
+        self.formatter = logging.Formatter('%(process)d|%(asctime)s_%(name)s_func:%(funcName)s_line:%(lineno)s %(levelname)s: %(message)s')
         self.fh.setFormatter(self.formatter)
         if not self.logger.handlers:
             self.logger.addHandler(self.fh)
