@@ -7,7 +7,7 @@ from email.header import Header
 log = log.Log()
 def mailTips(headContent,innerContent,receiversList=[]):
     # 第三方 SMTP 服务
-    mail_host="smtp.exmail.qq.com"  #设置服务器
+    mail_host="smtp.qq.com"  #设置服务器
     mail_user='xxx@xxx'    #用户名
     mail_pass="xxx"   #口令
 
@@ -16,7 +16,7 @@ def mailTips(headContent,innerContent,receiversList=[]):
         receiversList = ['xxxx@xxx']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 
     message = MIMEText(innerContent, 'plain', 'utf-8')
-    message['From'] = Header(headContent, 'utf-8')
+    message['From'] = Header(sender)
     message['To'] =  Header("相关", 'utf-8')
 
     subject = headContent
