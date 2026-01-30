@@ -21,13 +21,28 @@ class Log(Base.BaseClass):
         logConf = self.envConf
         logpath = logConf.get("common.log_path")
         name = os.path.realpath(sys.argv[0]).split("/")[-1].split(".")[:-1][0]
-        self.path = logpath
+        
+        # 确保日志路径是相对于项目根目录的
+        if logpath.startswith('../'):
+            # 获取当前文件的目录路径
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            # 向上两级目录（pg/lib/ -> pg/ -> 项目根目录）
+            project_root = os.path.dirname(os.path.dirname(current_dir))
+            # 构建绝对日志路径
+            self.path = os.path.join(project_root, logpath[3:])
+        else:
+            self.path = logpath
+        
+        # 确保日志目录存在
+        if not os.path.exists(self.path):
+            os.makedirs(self.path, exist_ok=True)
+        
         rq = time.strftime('%Y%m%d',time.localtime(time.time()))#日期
         self.filename = name+'_' + rq + '.log'    # 日志文件名称 
         self.name = name
         self.logger = logging.getLogger(self.name)
         self.logger.setLevel(logging.INFO)
-        self.fh = logging.FileHandler(self.path + self.filename)
+        self.fh = logging.FileHandler(os.path.join(self.path, self.filename))
         self.fh.setLevel(logging.DEBUG)
         self.formatter = logging.Formatter('%(process)d|%(asctime)s_%(name)s_func:%(funcName)s_line:%(lineno)s %(levelname)s: %(message)s')
         self.fh.setFormatter(self.formatter)
